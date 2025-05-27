@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
 class LoginPage {
-  // Elementos
   get campoCpf() {
     return cy.get("#cpf");
   }
@@ -14,7 +13,6 @@ class LoginPage {
     return cy.get("#submitBtn");
   }
 
-  // Ações
   visit() {
     cy.visit("/login");
   }

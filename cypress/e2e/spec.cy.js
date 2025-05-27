@@ -1,4 +1,4 @@
-import LoginPage from "../support/pages/login.page";
+import LoginPage from "../support/pages/Login.page";
 import CreateCoursePage from "../support/pages/CreateCourse.page";
 
 describe("Fluxo de Criação de Curso", () => {

@@ -3,7 +3,6 @@ class CreateCoursePage {
     cy.visit("/curso/create");
   }
 
-
   get thumb() {
     return cy.get("#thumb");
   }
@@ -44,26 +43,24 @@ class CreateCoursePage {
     return cy.get("#div-interesses");
   }
 
-  get formularioPrincipal() {
-    return cy.get("#formularioPrincipal > .card");
+  get selecionarCursos() {
+    return cy.get("input[type='checkbox'][id^='curso_']");
   }
 
   get submitButton() {
     return cy.get("#file-submit");
   }
 
-  // Métodos para interações complexas
-  selecionarPublicoAlvo(publico) {
-    this.publicoAlvo.click();
-    return cy.contains(publico).click();
+  selecionarCursosPorIds(ids = []) {
+    ids.forEach((id) => {
+      cy.get(`#curso_${id}`).check().should("be.checked");
+    });
   }
 
   criarCursoBasico(dadosCurso) {
-    this.thumb.selectFile(dadosCurso.thumbPath);
     this.name.type(dadosCurso.nome);
     this.descricao.type(dadosCurso.descricao);
     this.objetivosAprendizagem.type(dadosCurso.objetivos);
-    this.modalidade.select(dadosCurso.modalidade);
     this.cargaHoraria.type(dadosCurso.cargaHoraria);
     this.submitButton.click();
   }
