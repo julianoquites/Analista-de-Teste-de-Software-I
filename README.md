@@ -26,3 +26,27 @@
 | CT10 | Editar carga horária de um curso com sucesso             | 1. Faça login no sistema com usuário válido.<br>2. Navegue até a listagem de cursos e localize o curso de ID 127.<br>3. Clique em “Editar”.<br>4. Remova o valor atual de Carga Horária.<br>5. Insira um número válido entre 1 e 60.<br>6. Clique em “Salvar” e reabra para verificar.                         | O campo Carga Horária deve exibir exatamente o novo número cadastrado.                                                  | Passou           |
                                               | Passou |
 
+## Bug Report
+
+**Título:**  
+Erro ao clicar em "Concluir" na edição de um curso
+
+**Severidade:**  
+Média
+
+**Passos para reproduzir:**  
+1. Faça login no sistema com usuário válido  
+2. Navegue até a listagem de cursos e localize o curso de ID 127  
+3. Clique no botão **Editar**
+4. Observe o redirecionamento para a URL `/curso/update/127`
+
+**Resultado atual:**  
+- As alterações são salvas corretamente, mas em seguida a aplicação tenta carregar a rota via **GET** e dispara a exceção:
+
+- - O usuário vê a página de erro do Symfony em vez de voltar à tela de edição ou à listagem de cursos.
+
+**Resultado esperado:**  
+- Após submeter o formulário de edição, o sistema deve redirecionar o usuário para uma tela de confirmação ou para a listagem de cursos sem gerar erro HTTP 405.  
+- Não deve ocorrer tentativa de acesso **GET** à rota de atualização.
+
+
