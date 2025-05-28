@@ -49,7 +49,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions: 
-      contents: write  # PERMISSÃO ADICIONADA AQUI
+      contents: write
       
     steps:
       - name: Download artifact
@@ -63,12 +63,19 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
-          token: ${{ secrets.GITHUB_TOKEN }}  # TOKEN ADICIONADO AQUI
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update report
+      - name: Prepare and Rename Report
         run: |
+          # Copia todo o conteúdo do relatório
           rm -rf gh-pages/*
           cp -R mochawesome-report/* gh-pages/
+          
+          # Renomeia o arquivo principal para index.html
+          mv gh-pages/mochawesome.html gh-pages/index.html
+          
+          # Atualiza referências internas (opcional)
+          sed -i 's/mochawesome.html/index.html/g' gh-pages/index.html
 
       - name: Deploy to GitHub Pages
         working-directory: gh-pages
