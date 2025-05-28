@@ -36,17 +36,14 @@ Média
 
 **Passos para reproduzir:**  
 1. Faça login no sistema com usuário válido  
-2. Navegue até a listagem de cursos e localize o curso de ID 127  
+2. Clique em "Cursos" na barra de navegação superior  
 3. Clique no botão **Editar**
-4. Observe o redirecionamento para a URL `/curso/update/127`
+4. Edite qualquer informação e clique em "Concluir"
 
 **Resultado atual:**  
-- As alterações são salvas corretamente, mas em seguida a aplicação tenta carregar a rota via **GET** e dispara a exceção:
-
-- - O usuário vê a página de erro do Symfony em vez de voltar à tela de edição ou à listagem de cursos.
+- As alterações são salvas corretamente, mas em seguida o usuário vê auma página de erro.
 
 **Resultado esperado:**  
-- Após submeter o formulário de edição, o sistema deve redirecionar o usuário para uma tela de confirmação ou para a listagem de cursos sem gerar erro HTTP 405.  
-- Não deve ocorrer tentativa de acesso **GET** à rota de atualização.
+- Após submeter o formulário de edição clicando no botão "Concluir", o sistema deve redirecionar o usuário para uma tela de confirmação ou para a listagem de cursos sem gerar erro.  
 
 
