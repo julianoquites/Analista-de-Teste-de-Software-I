@@ -24,7 +24,6 @@
 | CT08 | Editar descrição de um curso com sucesso                 | 1. Faça login no sistema com usuário válido.<br>2. Navegue até a listagem de cursos e localize o curso de ID 127.<br>3. Clique em “Editar”.<br>4. Limpe o texto atual do campo Descrição.<br>5. Digite uma nova descrição válida (pelo menos um parágrafo).<br>6. Salve as alterações e reabra para verificar. | O campo Descrição deve exibir exatamente o novo texto cadastrado.                                                                | Passou           |
 | CT09 | Editar objetivos de aprendizagem de um curso com sucesso | 1. Faça login no sistema com usuário válido.<br>2. Navegue até a listagem de cursos e localize o curso de ID 127.<br>3. Clique em “Editar”.<br>4. Apague o conteúdo existente em Objetivos de Aprendizagem.<br>5. Insira novos objetivos (duas frases).<br>6. Salve e reabra para conferir.                    | O campo Objetivos de Aprendizagem deve exibir exatamente o novo texto cadastrado.                                             | Passou           |
 | CT10 | Editar carga horária de um curso com sucesso             | 1. Faça login no sistema com usuário válido.<br>2. Navegue até a listagem de cursos e localize o curso de ID 127.<br>3. Clique em “Editar”.<br>4. Remova o valor atual de Carga Horária.<br>5. Insira um número válido entre 1 e 60.<br>6. Clique em “Salvar” e reabra para verificar.                         | O campo Carga Horária deve exibir exatamente o novo número cadastrado.                                                  | Passou           |
-                                              | Passou |
 
 ## Bug Report
 
@@ -32,17 +31,21 @@
 Erro ao clicar em "Concluir" na edição de um curso
 
 **Severidade:**  
-Média
+Alta
 
 **Passos para reproduzir:**  
 1. Faça login no sistema com usuário válido  
 2. Clique em "Cursos" na barra de navegação superior  
-3. Clique no botão **Editar**
+3. Clique no botão **Editar** em qualquer curso que tenha essa opção
 4. Edite qualquer informação e clique em "Concluir"
 
 **Resultado atual:**  
 - As alterações são salvas corretamente, mas em seguida o usuário vê auma página de erro.
 
+Exemplo de erro:
+  ![image](https://github.com/user-attachments/assets/e2a8ed3b-9ffc-4ba4-8f9b-87d509373d71)
+
+ 
 **Resultado esperado:**  
 - Após submeter o formulário de edição clicando no botão "Concluir", o sistema deve redirecionar o usuário para uma tela de confirmação ou para a listagem de cursos sem gerar erro.  
 
