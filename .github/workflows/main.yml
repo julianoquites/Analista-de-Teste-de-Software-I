@@ -25,6 +25,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # ETAPA ADICIONADA AQUI ↓
+      - name: Install Mochawesome
+        run: npm install mochawesome@^7 --save-dev
+
       - name: Run Cypress with Mochawesome
         env:
           CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
@@ -43,7 +47,7 @@ jobs:
   deploy:
     name: 🚀 Deploy to GitHub Pages
     needs: test
-    if: github.ref == 'refs/heads/main'  # Executa apenas no main
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
@@ -62,7 +66,6 @@ jobs:
         run: |
           rm -rf gh-pages/*
           cp -R mochawesome-report/* gh-pages/
-        working-directory: .
 
       - name: Deploy to GitHub Pages
         working-directory: gh-pages
