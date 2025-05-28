@@ -5,7 +5,7 @@ Este repositório contém os casos de teste e automações desenvolvidas para o 
 ## Destaques Técnicos
 - Todos os testes integrados no pipeline CI/CD
 - Execução automática a cada atualização
-- [Relatórios dinâmicos no GitHub Pages](https://julianoquites.github.io/Analista-de-Teste-de-Software-I/)
+- <a href="https://julianoquites.github.io/Analista-de-Teste-de-Software-I/" target="_blank">Relatórios dinâmicos no GitHub Pages</a>
 
 **Importante:**  
 Durante os testes de edição (CT06-CT10), observei que, embora ocorra um erro no redirecionamento após salvar alterações, **todas as informações editadas são corretamente armazenadas**. Para mais informações verificar o Bug Report no final deste documento.
