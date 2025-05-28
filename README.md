@@ -1,4 +1,15 @@
-# Analista-de-Teste-de-Software-I
+# Testes para Plataforma de Educação - Criação e Edição de Cursos
+
+Este repositório contém os casos de teste e automações desenvolvidas para o processo seletivo da vaga de Analista de Testes I. 
+
+**Destaque importante:**  
+Durante os testes de edição (CT06-CT10), observei que, embora ocorra um erro no redirecionamento após salvar alterações, **todas as informações editadas são corretamente armazenadas**. Para mais informações verificar o Bug Report no final deste documento.
+
+## Sumário
+- 10 casos de teste manuais executados (100% passaram)
+- Bug crítico identificado no fluxo de edição
+- [Relatório completo disponível no GitHub Pages](https://julianoquites.github.io/Analista-de-Teste-de-Software-I/)
+
 
 ## Casos de Teste – Página de Criação de Curso
 
