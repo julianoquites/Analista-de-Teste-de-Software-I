@@ -20,12 +20,7 @@ describe("Fluxo de Criação de Curso", () => {
     };
 
     CreateCoursePage.criarCursoBasico(cursoMock);
-    cy.wait(5000);
 
     cy.wait("@verificarCampos").its("response.statusCode").should("eq", 200);
-  });
-
-  it("Deve exibir erro ao criar curso sem nome", () => {
-    CreateCoursePage.visit();
   });
 });
