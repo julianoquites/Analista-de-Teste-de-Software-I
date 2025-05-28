@@ -25,7 +25,7 @@ describe("Fluxo de Criação de Curso", () => {
     cy.wait("@verificarCampos").its("response.statusCode").should("eq", 200);
   });
 
-  it.only("Deve bloquear upload de imagem com mais de 2MB", () => {
+  it("Deve bloquear upload de imagem com mais de 2MB", () => {
     CreateCoursePage.visit();
 
     cy.fixture("large-image.jpg", null).then((fileContent) => {
