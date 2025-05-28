@@ -3,7 +3,7 @@
 Este repositório contém os casos de teste e automações desenvolvidas para o processo seletivo da vaga de Analista de Testes I. 
 
 ## Destaques Técnicos
-- Todos os testes integrados no pipeline CI/CD
+- Todos os testes integrados no pipeline CI/CD e automatizados com Cypress
 - <a href="https://julianoquites.github.io/Analista-de-Teste-de-Software-I/" target="_blank">Relatórios dinâmicos no GitHub Pages</a>
 
 **Importante:**  
@@ -49,7 +49,7 @@ Alta
 4. Edite qualquer informação e clique em "Concluir"
 
 **Resultado atual:**  
-- As alterações são salvas corretamente, mas em seguida o usuário vê auma página de erro.
+- As alterações são salvas corretamente, mas em seguida o usuário vê uma página de erro.
 
 Exemplo de erro:
   ![image](https://github.com/user-attachments/assets/e2a8ed3b-9ffc-4ba4-8f9b-87d509373d71)
