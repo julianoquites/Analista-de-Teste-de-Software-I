@@ -38,6 +38,7 @@ jobs:
           name: mochawesome-report
           path: mochawesome-report
 
+
   deploy:
     name: 🚀 Deploy to GitHub Pages
     needs: test
