@@ -1,4 +1,5 @@
 import CreateCoursePage from "../support/pages/CreateCourse.page";
+import "cypress-file-upload";
 import { faker } from "@faker-js/faker";
 
 describe("Fluxo de Criação de Curso", () => {
@@ -13,13 +14,88 @@ describe("Fluxo de Criação de Curso", () => {
     CreateCoursePage.visit();
 
     const cursoMock = {
-      nome: faker.lorem.words(3),
+      nome: faker.lorem.words(1),
       descricao: faker.lorem.paragraph(),
       objetivos: faker.lorem.sentences(2),
       cargaHoraria: faker.number.int({ min: 1, max: 60 }).toString(),
     };
 
     CreateCoursePage.criarCursoBasico(cursoMock);
+
+    cy.wait("@verificarCampos").its("response.statusCode").should("eq", 200);
+  });
+
+  it.only("Deve bloquear upload de imagem com mais de 2MB", () => {
+    CreateCoursePage.visit();
+
+    cy.fixture("large-image.jpg", null).then((fileContent) => {
+      cy.get("#thumb").attachFile({
+        fileContent: fileContent.toString(),
+        fileName: "large-image.jpg",
+        mimeType: "image/jpeg",
+      });
+    });
+
+    cy.get("#file-result").should(
+      "have.text",
+      "Por favor selecione arquivo com menos de 2MB."
+    );
+  });
+
+  it("Deve recusar a criação de um curso sem o dado obrigatório de descrição", () => {
+    CreateCoursePage.visit();
+
+    const cursoMock = {
+      nome: faker.lorem.words(3),
+      objetivos: faker.lorem.sentences(2),
+      cargaHoraria: faker.number.int({ min: 1, max: 60 }).toString(),
+    };
+
+    CreateCoursePage.name.type(cursoMock.nome);
+    CreateCoursePage.objetivosAprendizagem.type(cursoMock.objetivos);
+    CreateCoursePage.cargaHoraria.type(cursoMock.cargaHoraria);
+
+    CreateCoursePage.submitButton.click();
+    cy.wait(5000);
+
+    CreateCoursePage.submitButton.should("be.visible");
+  });
+
+  it("Deve recusar a criação de um curso com o dado obrigatório de nome com menos de dois caracteres", () => {
+    CreateCoursePage.visit();
+
+    const cursoMock = {
+      nome: faker.lorem.word(1),
+      descricao: faker.lorem.paragraph(),
+      objetivos: faker.lorem.sentences(2),
+      cargaHoraria: faker.number.int({ min: 1, max: 60 }).toString(),
+    };
+
+    CreateCoursePage.criarCursoBasico(cursoMock);
+    cy.get("#erro-nome").should("be.visible");
+  });
+  it("Deve aceitar a criação de um curso com seleção de todos os pre-requisitos", () => {
+    cy.intercept("POST", "/curso/verificar_campos/").as("verificarCampos");
+
+    const cursoMock = {
+      nome: faker.lorem.words(1),
+      descricao: faker.lorem.paragraph(),
+      objetivos: faker.lorem.sentences(2),
+      cargaHoraria: faker.number.int({ min: 1, max: 60 }).toString(),
+    };
+
+    CreateCoursePage.visit();
+
+    CreateCoursePage.name.type(cursoMock.nome);
+    CreateCoursePage.descricao.type(cursoMock.descricao);
+    CreateCoursePage.objetivosAprendizagem.type(cursoMock.objetivos);
+    CreateCoursePage.cargaHoraria.type(cursoMock.cargaHoraria);
+    CreateCoursePage.selecionarCursos.check();
+
+    CreateCoursePage.submitButton.click();
+    cy.wait(5000);
+
+    CreateCoursePage.submitButton.should("be.visible");
 
     cy.wait("@verificarCampos").its("response.statusCode").should("eq", 200);
   });
